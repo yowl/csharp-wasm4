@@ -5,9 +5,7 @@ Dumping space for notes will this is WIP
 ```
 emcc MiniRuntime.wasm.c -c -o MiniRuntime.bc -s WASM=1 -Os
 
-csc.exe /debug /O /noconfig /nostdlib /runtimemetadataversion:v4.0.30319 MiniRuntime.cs MiniBCL.cs HelloWorld\Hello.cs /out:Hello.ilexe /langversion:latest /unsafe /target:library
-
-E:\GitHub\runtimelab\artifacts\bin\coreclr\windows.x64.Debug\ilc\ilc --targetos=wasm --targetarch=wasm hello.ilexe -o hello.bc --systemmodule:hello --Os -g
+csc.exe /debug /O /noconfig /nostdlib /runtimemetadataversion:v4.0.30319 MiniRuntime.cs MiniBCL.cs HelloWorld\Hello.cs /out:Hello.dll /langversion:latest /unsafe 
 
 ## needs PR to build libraries, or ctrl-f5 from vs
 E:\GitHub\runtimelab\artifacts\bin\coreclr\windows.x64.Debug\ilc\ilc --targetarch=wasm --targetos:wasm e:\github\w4\hello.dll -o e:\github\w4\hello.bc --systemmodule:hello --O --nativelib --codegenopt:Target=wasm32-unknown-unknown
