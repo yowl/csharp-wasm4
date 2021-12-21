@@ -1,0 +1,9 @@
+*.swp
+*.pdb
+*.bc
+*.txt
+*.dll
+obj/
+*.wasm
+*.exe
+.vs/
