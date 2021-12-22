@@ -16,6 +16,13 @@ csc.exe /debug /O /noconfig /nostdlib /runtimemetadataversion:v4.0.30319 MiniRun
 # Use NativeAOT-LLVM to compile the library from above to LLVM bitcode
 E:\GitHub\runtimelab\artifacts\bin\coreclr\windows.x64.Debug\ilc\ilc --targetarch=wasm --targetos:wasm e:\github\w4\hello.dll -o e:\github\w4\hello.bc --systemmodule:hello --O --nativelib --codegenopt:Target=wasm32-unknown-unknown
 
+# For linking, the easiest thing is to use wasm-ld from the WASI SDK.  Download the  wasi-sdk-14.0-linux.tar.gz 
+from https://github.com/WebAssembly/wasi-sdk/releases  .   And extract it.  
+Then from WSL, or a real linux installation, (I tested with WSL Ubuntu 20.04) you can run:
+
+./wasm-ld -o /mnt/e/GitHub/w4/hello-wasm.wasm /mnt/e/GitHub/w4/hello.bc /mnt/e/GitHub/w4/MiniRuntime.bc /mnt/e/GitHub/w4/helloclrjit.bc -mllvm -combiner-global-alias-analysis=false -mllvm -disable-lsr --import-undefined --strip-debug --export-if-defined=__start_em_asm --export-if-defined=__stop_em_asm --export-if-defined=fflush  --export-table -z stack-size=1024 --import-memory --initial-memory=65536 --max-memory=65536 --global-base=6560 --export=update --no-entry
+
+# Alternatively for masochists, you can:
 #build LLVM ld and run from VS with opts
 # I'm running LLVM built from the src download and from inside VS as the one bundled with the current emscripten tree failed for me.
 #
