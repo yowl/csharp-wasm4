@@ -33,5 +33,12 @@ lld -flavor wasm -o e:\GitHub\w4\hello-wasm.wasm E:\GitHub\w4\hello.bc E:\GitHub
 
 # to run
 w4 run hello-wasm.wasm
+
+## Linux
+
+# Configure LLBM
+cmake -G Ninja -DLLVM_ENABLE_PROJECTS=clang;lld -DLLVM_TARGETS_TO_BUILD=WebAssembly ../llvm
+# Building LLVM
+cmake --build .
 ```
 
