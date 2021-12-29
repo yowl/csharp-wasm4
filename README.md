@@ -47,7 +47,7 @@ cmake --build .
 
 # build the compiler
 ./build.sh nativeaot+libs -c Debug -lc Debug -a wasm -os Browser
-./build.sh clr.jit+clr.wasmjit+nativeaot.ilc -c Debug -a wasm -os Browser
+./build.sh clr.jit+clr.wasmjit+nativeaot.ilc -c Debug
 
 # to build the packages
 ./build.sh nativeaot.packages -c Debug -a wasm -os Browser
