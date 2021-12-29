@@ -36,7 +36,7 @@ w4 run hello-wasm.wasm
 
 ## Linux
 
-# Configure LLBM
+# Configure LLVM
 cmake -G Ninja -DLLVM_ENABLE_PROJECTS=clang;lld -DLLVM_TARGETS_TO_BUILD=WebAssembly ../llvm
 # Building LLVM
 cmake --build .
