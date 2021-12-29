@@ -40,5 +40,21 @@ w4 run hello-wasm.wasm
 cmake -G Ninja -DLLVM_ENABLE_PROJECTS=clang;lld -DLLVM_TARGETS_TO_BUILD=WebAssembly ../llvm
 # Building LLVM
 cmake --build .
+
+## NativeAOT-LLVM
+./build.sh nativeaot+libs -c Debug -lc Debug -a wasm -os Browser
+# if emscripten cache lock errors appear, just try again
+
+# build the compiler
+./build.sh nativeaot+libs -c Debug -lc Debug -a wasm -os Browser
+./build.sh clr.jit+clr.wasmjit+nativeaot.ilc -c Debug -a wasm -os Browser
+
+# to build the packages
+./build.sh nativeaot.packages -c Debug -a wasm -os Browser
+
+# Test - doesn't work
+./src/tests/build.sh nativeaot Debug wasm -os browser  skipnative /p:SmokeTestsOnly=true /p:LibrariesConfiguration=Debug
+./src/tests/run.sh --runnativeaottests Debug wasm
+
 ```
 
