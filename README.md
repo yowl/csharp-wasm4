@@ -52,9 +52,15 @@ cmake --build .
 # to build the packages
 ./build.sh nativeaot.packages -c Debug -a wasm -os Browser
 
+
 # Test - doesn't work
 ./src/tests/build.sh nativeaot Debug wasm -os browser  skipnative /p:SmokeTestsOnly=true /p:LibrariesConfiguration=Debug
 ./src/tests/run.sh --runnativeaottests Debug wasm
+
+# compile something.
+export LD_LIBRARY_PATH=~/github/runtimelab/artifacts/bin/coreclr/Linux.x64.Debug
+
+../runtimelab/dotnet.sh ~/github/runtimelab/artifacts/bin/coreclr/Linux.x64.Debug/ilc/ilc.dll --targetarch=wasm --targetos:wasm Hello.dll -o Hello.bc --systemmodule:Hello --O --nativelib --codegenopt:Target=wasm32-unknown-unknown
 
 ```
 
