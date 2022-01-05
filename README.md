@@ -104,6 +104,9 @@ cmake --build .
 
 # build the compiler
 ./build.sh nativeaot+libs -c Debug -lc Debug -a wasm -os Browser
+
+export LLVM_CMAKE_CONFIG=/home/scott/github/llvm-project/build/lib/cmake/llvm
+
 ./build.sh clr.jit+clr.wasmjit+nativeaot.ilc -c Debug
 
 # to build the packages
